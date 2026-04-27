@@ -1,0 +1,237 @@
+:root {
+    --primary-color: #4a90e2;
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --border-color: #ddd;
+    --highlight-bg: rgba(255, 165, 0, 0.4);
+    --error-color: #e74c3c;
+    --card-bg: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #666;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+@media (min-width: 768px) {
+    main {
+        grid-template-columns: 1.5fr 1fr;
+    }
+}
+
+.input-section, .output-section {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.field-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary-color);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 14px;
+    margin-top: 5px;
+    min-height: 20px;
+}
+
+/* 极精细的编辑器对齐逻辑 */
+.text-editor {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.text-editor:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+.backdrop, #sourceText {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 12px !important;
+    
+    font-size: 16px !important;
+    /* 使用完全等宽的字体栈，确保中英文对齐 */
+    font-family: 'Consolas', 'Monaco', 'Menlo', 'Courier New', monospace !important;
+    line-height: 24px !important;
+    
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    word-break: break-all !important;
+    
+    overflow-y: scroll !important; /* 强制显示垂直滚动条，确保可用宽度完全一致 */
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    text-align: left !important;
+    tab-size: 4 !important;
+}
+
+#sourceText {
+    background: transparent !important;
+    color: #333 !important;
+    z-index: 2;
+    resize: none !important;
+    outline: none !important;
+    border: none !important;
+    -webkit-text-fill-color: #333;
+}
+
+.backdrop {
+    background-color: #fff !important;
+    /* 这里的文字颜色必须是透明的，我们只显示 mark 背景 */
+    color: transparent !important;
+    z-index: 1;
+    pointer-events: none;
+    border: none !important;
+}
+
+/* 高亮样式 */
+mark {
+    background-color: var(--highlight-bg) !important;
+    color: transparent !important;
+    border-radius: 2px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline !important;
+}
+
+/* 结果列表样式 */
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.result-header h2 {
+    font-size: 1.2rem;
+    flex-grow: 1;
+}
+
+.btn-group {
+    display: flex;
+    gap: 8px;
+}
+
+.secondary-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.secondary-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.result-list {
+    height: 420px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px;
+    background: #fafafa;
+}
+
+.match-item {
+    padding: 8px 12px;
+    background: white;
+    border-bottom: 1px solid #eee;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.match-item:last-child {
+    border-bottom: none;
+}
+
+.empty-tip {
+    color: #999;
+    text-align: center;
+    margin-top: 50px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #888;
+    font-size: 0.9rem;
+}
