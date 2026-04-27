@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则匹配高亮工具</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>正则表达式匹配工具</h1>
+            <p>输入源数据和正则表达式，实时查看匹配结果并高亮显示。</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <div class="field-group">
+                    <label for="regexInput">正则表达式</label>
+                    <input type="text" id="regexInput" placeholder="例如: \d+ 或 [a-z]+" value="\d+">
+                    <div id="regexError" class="error-message"></div>
+                </div>
+
+                <div class="editor-container">
+                    <label>源数据文本</label>
+                    <div class="text-editor">
+                        <pre id="backdrop" class="backdrop"></pre>
+                        <textarea id="sourceText" placeholder="请在此粘贴或输入源数据..." spellcheck="false"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section class="output-section">
+                <div class="result-header">
+                    <h2>匹配结果 (<span id="matchCount">0</span>)</h2>
+                    <div class="btn-group">
+                        <button id="copyBtn" class="secondary-btn">复制结果</button>
+                        <button id="clearBtn" class="secondary-btn">清空全部</button>
+                    </div>
+                </div>
+                <div id="resultList" class="result-list">
+                    <p class="empty-tip">等待匹配数据...</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 正则工具 - 简洁、高效、实时</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
